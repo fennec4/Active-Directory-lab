@@ -8,6 +8,8 @@
 
 <p align="center"><img src="img/Active Directory lab.png"/></p> 
 
+*Ref 1: Diagram*
+
 ## Objective
 
 <p>this lab simulates a real world enterprise network where I set up a whole soc lab to follow along to know more about this lab</p>
@@ -19,21 +21,26 @@
 - Building a domain, managing users, and joining client VMs.
 - Deploying Splunk and forwarding logs across multiple operating systems.
 - Installing Microsoft Sysmon and configuring Windows audit policies.
-- Performing RDP brute-force attacks using Crowbar on Kali Linux.
-- Running automated adversary simulation tests with Atomic Red Team.
 
 ### Tools Used
 
 
-- Security Information and Event Management (SIEM) system for log ingestion and analysis.
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
-- Telemetry generation tools to create realistic network traffic and attack scenarios.
+- Oracle VirtualBox.
+- OpenSSH.
+- Splunk Enterprise & Splunk Universal Forwarder.
+- Microsoft Sysmon.
 
 ## Steps
-drag & drop screenshots here or use imgur and reference them using imgsrc
+### 1/ Planification
+<p>in this phase, I created the diagram in <a href="img/Active Directory lab.png">Ref 1</a> to  organize the lab structure, the lab contains 4 virtual machines :</p>
+<p align="center"><img src="img/vms.png"/></p>
 
-Every screenshot should have some text explaining what the screenshot is about.
+*Ref 2: virtual machines*
 
-Example below.
+- Ubuntu Server running Splunk Enterprise (SIEM).
+- Windows Server 2022 that hosts Active Directory Domain Services.
+- Windows 10 Enterprise, a corporate workstation joined to the active directory domain.
+- Kali Linux used to conduct target discovery and brute-force attacks.
 
-*Ref 1: Network Diagram*
+for the network part I created a virtualbox NAT  network with the IPv4 prefix of `192.168.10.0/24`.
+<p>After the conception of the diagram I started building the VMs using VirtualBox Hypervisor <a href="img/vms.png">ref 2</a>.</p>
