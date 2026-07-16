@@ -44,3 +44,11 @@
 
 for the network part I created a virtualbox NAT  network with the IPv4 prefix of `192.168.10.0/24`.
 <p>After the conception of the diagram I started building the VMs using VirtualBox Hypervisor <a href="img/vms.png">ref 2</a>.</p>
+
+### 2/ SIEM setup
+In this phase, I set up the Ubuntu server with the Splunk SIEM.
+
+- first I attributed the Splunk Server the static IP address `192.168.10.1` as shown in the <a href="img/Splunk server setup.png">ref 3</a>.
+<img src="img/Splunk server setup.png"/>
+
+*Ref 3: IP setup*
