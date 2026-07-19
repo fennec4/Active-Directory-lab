@@ -2,7 +2,7 @@
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=windows" />
-    <h1 align="center">Active-Directory-lab </h1>
+    <h1 align="center">Active Directory & SIEM Monitoring Home Lab</h1>
   </a>
 </p>
 
@@ -12,23 +12,28 @@
 
 ## Objective
 
-this lab simulates a real world enterprise network where I set up a whole soc lab to follow along to know more about this lab
+This project involves building a fully operational, simulated corporate enterprise network environment to monitor, analyze, and detect advanced cybersecurity threats. The lab integrates core IT infrastructure management with defensive security operations by centralizing comprehensive Windows telemetry inside a Security Information and Event Management (SIEM) pipeline. 
+
+The environment is utilized to execute simulated modern attack techniques (such as credential brute-forcing and local post-exploitation tactics) and build structured detection alerts based on host security events and Sysmon logging.
 <p>you can find here the <a href="https://youtu.be/5OessbOgyEo?si=TgaMxJH3zi4oQWGY">source link</a></p>
 
 ### Skills Learned
 
+* **Active Directory Administration:** Deployed and promoted a standalone Windows Server into an Active Directory Domain Controller; managed centralized authentication, users (`tsmith`, `jsmith`), and domain workstation onboarding.
+* **SIEM Management & Engineering:** Hosted a persistent Linux-based Splunk Enterprise indexing server, configured custom indexing layers, and structured client pipelines via standard forwarder agents.
+* **Endpoint Telemetry & Security Configuration:** Implemented Microsoft Sysmon with tailored configuration files to monitor deep endpoint activity; modified Windows Local Security Policies to audit detailed authentication successes and failures.
+* **Adversary Emulation:** Conducted automated attacks targeting corporate network assets using targeted command-line tools to evaluate defense boundaries.
+* **Threat Hunting & Logs Analysis:** Wrote precise Search Processing Language (SPL) queries inside Splunk to trace malicious interaction back to offensive source IPs, identifying specific system event IDs.
 
-- Building a domain, managing users, and joining client VMs.
-- Deploying Splunk and forwarding logs across multiple operating systems.
-- Installing Microsoft Sysmon and configuring Windows audit policies.
 
 ### Tools Used
-
 
 - Oracle VirtualBox.
 - OpenSSH.
 - Splunk Enterprise & Splunk Universal Forwarder.
 - Microsoft Sysmon.
+- Crowbar.
+- Atomic Red Team.
 
 ## Steps
 ### 1/ Planification
@@ -38,12 +43,15 @@ in this phase, I created the diagram in <a href="img/Active Directory lab.png">R
 
 *Ref 2: virtual machines*
 
-- Ubuntu Server running Splunk Enterprise (SIEM).
-- Windows Server 2022 that hosts Active Directory Domain Services.
-- Windows 10 Enterprise, a corporate workstation joined to the active directory domain.
-- Kali Linux used to conduct target discovery and brute-force attacks.
-
 for the network part I created a virtualbox NAT  network with the IPv4 prefix of `192.168.10.0/24`.
+
+| Hostname | IP Address | Operating System | Primary Role / Software Implemented |
+| :--- | :---: | :---: | :--- |
+| **Actice Directory** | `192.168.10.100` | Windows Server 2022 | Active Directory Domain Services (AD DS), Domain Controller, DNS, Splunk Universal Forwarder |
+| **Target machine** | `192.168.10.150` | Windows 10 Enterprise | Domain-Joined Workstation, Remote Desktop (RDP) Endpoint, Microsoft Sysmon, Splunk Universal Forwarder |
+| **Kali** | `192.168.10.250` | Kali Linux | Attack Platform, Network Discovery, `Crowbar` Brute-Force Framework |
+| **Splunk** | `192.168.10.10` | Ubuntu Server | Centralized SIEM, Search Head, Indexer (`index=endpoint`) |
+
 
 After the conception of the diagram I started building the VMs using VirtualBox Hypervisor <a href="img/vms.png">ref 2</a>.
 
